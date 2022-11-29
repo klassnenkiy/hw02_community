@@ -7,4 +7,4 @@ urlpatterns = [
     path('', views.index, name='posts'),
     # Страницы сообществ (назовём их groups)
     path('group/<slug:slug>/', views.group_posts, name='group'),
-] 
+]
