@@ -4,7 +4,7 @@ from yatube.settings import COUNT_POSTS
 
 
 def index(request):
-    posts = Post.objects.all()[:COUNT_POSTS]
+    posts = Post.objects.select_related('author', 'group').all()[:COUNT_POSTS]
     context = {
         'posts': posts,
     }
@@ -13,7 +13,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()[:COUNT_POSTS]
+    posts = group.posts.select_related('author')[:COUNT_POSTS]
     context = {
         'group': group,
         'posts': posts,
